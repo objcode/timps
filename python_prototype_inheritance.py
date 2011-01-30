@@ -1,6 +1,8 @@
 
-
 class prototype(object):
+    """
+    First draft of python prototypal inheritance.
+    """
     def __init__(self, delegate):
         self._delegate = delegate
 
@@ -13,6 +15,12 @@ class prototype(object):
         return cls
 
 def proto2(delegate):
+    """
+    Better implementation of prototypal inheritance.  Classes that have
+    a delegate will defer to them unless they override the property.
+
+    This is basically identical to javascript inheritance.
+    """
     def wrap(cls):
         old_getattr = cls.__getattr__ if '__getattr__' in cls.__dict__ else None
         def __getattr__(self, name):
